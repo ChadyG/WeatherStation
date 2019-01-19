@@ -207,7 +207,7 @@ class WeatherStation(CarouselContainer):
         sensors_data = self.get_sensors_data()
 
         if self.current_item.entity_type is WeatherEntityType.TEMPERATURE:
-            pixels = self.current_item.show_pixels(sensors_data[0])
+            pixels = self.current_item.show_pixels(sensors_data[1])
         elif self.current_item.entity_type is WeatherEntityType.HUMIDITY:
             pixels = self.current_item.show_pixels(sensors_data[2])
         else:
