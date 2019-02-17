@@ -304,7 +304,7 @@ class WeatherStation(CarouselContainer):
 if __name__ == '__main__':
     # Setup logger, to log warning/errors during execution
     logging.basicConfig(
-        filename='/home/pi/weather_station/error.log',
+        filename='/var/log/weather/error.log',
         format='\r\n%(asctime)s %(levelname)s %(message)s', 
         level=logging.WARNING
     )
