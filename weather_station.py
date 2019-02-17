@@ -138,8 +138,8 @@ class WeatherStation(CarouselContainer):
         # http://yaab-arduino.blogspot.co.uk/2016/08/accurate-temperature-reading-sensehat.html
         # adj_temp = avg_temp - (cpu_temp - avg_temp) / 1.5
 
-        # However I found this one more efficient and used it for Raspberry Pi 2 and Zebra case:
-        adj_temp = avg_temp - (cpu_temp - avg_temp) / 0.69
+        # Adjustment for pi zero install, 2-17-2019 (cpu 20.2, sense 10.2, actual 33F(0.55C))
+        adj_temp = avg_temp - (cpu_temp - avg_temp) / 1.05
 
         print('\033[92mCPU temp: %s, Avg temp: %s, Adj temp: %s\033[0m' % (cpu_temp, avg_temp, adj_temp))
         
