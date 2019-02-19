@@ -10,4 +10,4 @@
 echo "Starting Weather Station"
 echo "Process ID: $$"
 
-/usr/bin/python /home/pi/weather_station/weather_station.py
+/usr/bin/python /home/pi/Projects/WeatherStation/weather_station.py
