@@ -23,8 +23,8 @@ class Config:
     UPDATE_INTERVAL = 60 # in seconds
 
     # Visual styles configuration
-    TEMP_POSITIVE = (255, 0, 0)    # red
-    TEMP_NEGATIVE = (0, 0, 255)    # blue
+    TEMP_POSITIVE = (150, 160, 150)    # daytime
+    TEMP_NEGATIVE = (50, 60, 50)    # nighttime
     HUM_POSITIVE = (0, 255, 0)     # green
     HUM_NEGATIVE = (255, 255, 255) # white
     PRESS_POSITIVE = (148, 0, 211)  # purple

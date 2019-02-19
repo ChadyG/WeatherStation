@@ -7,6 +7,10 @@
 ********************************************************************************************************************'''
     
 from abc import ABCMeta, abstractmethod, abstractproperty
+import time
+import datetime
+import calendar
+import numpy
 
 class VisualStyle(object):
     """Base class for all visual styles."""
@@ -22,6 +26,7 @@ class VisualStyle(object):
         #   -15 Celsius is shown as 15 in blue color
         self._p = positive_color
         self._n = negative_color
+        self._d = tuple( numpy.subtract(positive_color, negative_color) )
 
     @property
     def rotation(self):
@@ -194,9 +199,16 @@ class NumericStyle(VisualStyle):
         else:
             result = self._infinity
 
-        # Figure out what color to use depending on positive or negative value
-        if value <= 0:
-            result = tuple(self._n if pixel is self._p else self._e for pixel in result)
+        # Insert hour range to offset middle of period to (12am default)
+        offset = 0 * 3600
+        seconds = calendar.timegm(time.gmtime()) % 86400
+        dayscale = numpy.cos( (seconds - offset) / 86400.0 )
+
+        color = tuple( numpy.add(self._n, numpy.multiply(dayscale, self._d)) )
+        color = tuple( map(int, color) )
+
+        # Figure out what color to use depending on time of day
+        result = tuple(color if pixel is self._p else self._e for pixel in result)
 
         return result
             
