@@ -27,6 +27,7 @@ import signal
 import sys
 import time
 import urllib2
+import traceback
 
 from config import Config
 from weather_entities import DEFAULT_WEATHER_ENTITIES, CarouselContainer, WeatherEntityType
@@ -139,6 +140,7 @@ class WeatherStation(CarouselContainer):
         # adj_temp = avg_temp - (cpu_temp - avg_temp) / 1.5
 
         # Adjustment for pi zero install, 2-17-2019 (cpu 20.2, sense 10.2, actual 33F(0.55C))
+        # 2-19-2019 (cpu 20.2, sense 13, actual 33F(0.55C))
         adj_temp = avg_temp - (cpu_temp - avg_temp) / 1.05
 
         print('\033[92mCPU temp: %s, Avg temp: %s, Adj temp: %s\033[0m' % (cpu_temp, avg_temp, adj_temp))
@@ -353,5 +355,6 @@ if __name__ == '__main__':
         signal.pause()
     except:
         _terminate_application()
+        traceback.print_exc(file=sys.stdout)
 
         sys.exit(0)
