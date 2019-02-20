@@ -202,7 +202,7 @@ class NumericStyle(VisualStyle):
         # Insert hour range to offset middle of period to (12am default)
         offset = 0 * 3600
         seconds = calendar.timegm(time.gmtime()) % 86400
-        dayscale = numpy.cos( (seconds - offset) / 86400.0 )
+        dayscale = numpy.sin( (seconds - offset) / 86400.0 )
 
         color = tuple( numpy.add(self._n, numpy.multiply(dayscale, self._d)) )
         color = tuple( map(int, color) )
